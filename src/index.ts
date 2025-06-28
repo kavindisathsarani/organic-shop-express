@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-    res.send("Hello world!");
+    res.send("Hello world hi!");
 })
 
 //4.Instructs the express app to listen on port 3000
