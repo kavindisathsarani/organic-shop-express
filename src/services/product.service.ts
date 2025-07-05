@@ -12,7 +12,7 @@ export const getProductById = (id: number): Product | undefined => {
     return productList.find(product => product.id === id);
 }
 
-const updateProduct = (id: number, data: Product) => {
+export const updateProduct = (id: number, data: Product) => {
     const product = productList.find(product => product.id = id);
     if (!product) {
         return null;
