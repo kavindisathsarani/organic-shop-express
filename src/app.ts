@@ -7,7 +7,7 @@ const app = express();
 //2.Define Middlewares
 app.use(express.json());
 
-app.use("api/products", productRoutes)
+app.use("/api/products", productRoutes)
 
 //Define a simple HTTP GET request
 // app.get("/", (req:Request, res:Response) => {

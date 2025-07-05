@@ -1,10 +1,10 @@
 import {productList} from "../db/db";
 import {Product} from "../model/product.model";
 
-const getAllProducts = () => {
+export const getAllProducts = () => {
     return productList;
 }
-const saveProduct = (product: Product) => {
+export const saveProduct = (product: Product) => {
     productList.push(product);
     return product;
 }
