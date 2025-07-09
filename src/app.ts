@@ -1,6 +1,7 @@
 import express, {Express, Request, Response} from "express";
 import productRoutes from "./routes/product.routes"
 import cors from "cors"
+import contactRoutes from "./routes/contact.routes";
 
 // 1. Initialize the express app
 const app = express();
@@ -29,6 +30,7 @@ app.use(cors());
 
 
 app.use("/api/products", productRoutes)
+app.use("/api/contacts", contactRoutes)
 
 //Define a simple HTTP GET request
 // app.get("/", (req:Request, res:Response) => {
