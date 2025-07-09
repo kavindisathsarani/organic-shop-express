@@ -25,8 +25,6 @@ A full-stack application for managing organic product listings, orders, and cust
 git clone https://github.com/kavindisathsarani/organic-shop-express.git
 cd organic-shop-express
 
-
-
 # Backend Setup
 
 cd backend
