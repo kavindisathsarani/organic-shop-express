@@ -24,7 +24,7 @@ export const saveProduct = async (req: Request, res: Response) => {
             return;
         }
 
-        const savedProduct = productService.saveProduct(newProduct);
+        const savedProduct = await productService.saveProduct(newProduct);
         res.status(201).json(savedProduct);
     } catch (error) {
         console.error(error);
@@ -46,14 +46,14 @@ export const getProduct = async (req: Request, res: Response) => {
     res.status(200).json(product);
 }
 
-export const updateProduct = (req: Request, res: Response) => {
+export const updateProduct = async (req: Request, res: Response) => {
     const productId = parseInt(req.params.id);
     if (isNaN(productId)) {
         res.status(400).json({error: "Invalid product id"});
         return;
     }
     const updatedData = req.body;
-   const updatedProduct= productService.updateProduct(productId,updatedData)
+   const updatedProduct=await productService.updateProduct(productId,updatedData)
     if (!updatedProduct){
         res.status(404).json({error:'Product not found'});
         return;
