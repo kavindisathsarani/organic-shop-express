@@ -1,4 +1,4 @@
-import {productList} from "../db/db";
+// import {productList} from "../db/db";
 // import {Product} from "../model/product.model";
 import Product from '../model/product.model';
 import {ProductDto} from "../dto/product.dto";
@@ -28,7 +28,7 @@ export const deleteProduct = async (id: number) => {
    return true;
 }
 
-export const validateProduct = (product: Product) => {
+export const validateProduct = (product: ProductDto) => {
     if (!product.id || !product.name || !product.price || !product.currency || !product.image) {
         return "All fields are required";
     }

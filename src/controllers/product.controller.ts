@@ -3,9 +3,9 @@ import * as productService from "../services/product.service"
 
 //Controller function to handle gwt all products
 
-export const getAllProducts = (req: Request, res: Response) => {
+export const getAllProducts = async (req: Request, res: Response) => {
     try {
-        const products = productService.getAllProducts();
+        const products = await productService.getAllProducts();
         res.status(200).json(products); //200, 201, 404,400
     } catch (error) {
         console.error(error);
@@ -14,10 +14,10 @@ export const getAllProducts = (req: Request, res: Response) => {
 
 }
 
-export const saveProduct = (req: Request, res: Response) => {
+export const saveProduct = async (req: Request, res: Response) => {
     try {
         const newProduct = req.body;
-        const validationError = productService.validateProduct(newProduct)
+        const validationError = await productService.validateProduct(newProduct)
 
         if (validationError) {
             res.status(400).json({error: validationError});
@@ -32,13 +32,13 @@ export const saveProduct = (req: Request, res: Response) => {
     }
 }
 
-export const getProduct = (req: Request, res: Response) => {
+export const getProduct = async (req: Request, res: Response) => {
     const productId = parseInt(req.params.id);
     if (isNaN(productId)) {
         res.status(400).json({error: "Invalid product id"});
         return;
     }
-    const product = productService.getProductById(productId);
+    const product = await productService.getProductById(productId);
     if (!product) {
         res.status(404).json({error: "Product not found"});
         return;
@@ -61,13 +61,13 @@ export const updateProduct = (req: Request, res: Response) => {
     res.status(200).json(updatedProduct);
 }
 
-export const deleteProduct = (req: Request, res: Response) => {
+export const deleteProduct = async (req: Request, res: Response) => {
     const productId = parseInt(req.params.id);
     if (isNaN(productId)) {
         res.status(400).json({error: "Invalid product id"});
         return;
     }
-    const deleteProduct= productService.deleteProduct(productId)
+    const deleteProduct= await productService.deleteProduct(productId)
     if(!deleteProduct){
         res.status(404).json({error:'Product not found'});
         return;
