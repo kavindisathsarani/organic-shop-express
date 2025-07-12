@@ -1,33 +1,31 @@
 import {productList} from "../db/db";
-import {Product} from "../model/product.model";
+// import {Product} from "../model/product.model";
+import Product from '../model/product.model';
+import {ProductDto} from "../dto/product.dto";
+export const getAllProducts = async (): Promise<ProductDto[]> => {
+    // return productList;
+    return Product.find();
+}
+export const saveProduct = async (product: ProductDto): Promise<ProductDto> => {
+    return Product.create(product);
+}
+export const getProductById = async (id: number): Promise<any> => {
+    // return productList.find(product => product.id === id);
+    return Product.findOne({id: id});
+}
 
-export const getAllProducts = () => {
-    return productList;
-}
-export const saveProduct = (product: Product) => {
-    productList.push(product);
-    return product;
-}
-export const getProductById = (id: number): Product | undefined => {
-    return productList.find(product => product.id === id);
-}
-
-export const updateProduct = (id: number, data: Product) => {
-    const product = productList.find(product => product.id = id);
+export const updateProduct = async (id: number, data: ProductDto) => {
+    const product = await Product.findOneAndUpdate({id: id}, data, {new: true});
     if (!product) {
         return null;
     }
-    Object.assign(product, data);
+    // Object.assign(product, data);
     return product;
 }
 
-export const deleteProduct = (id: number) => {
-    const index = productList.findIndex(product => product.id === id);
-    if (index === -1) {
-        return false;
-    }
-    productList.splice(index, 1);
-    return true;
+export const deleteProduct = async (id: number) => {
+   await Product.deleteOne({id: id});
+   return true;
 }
 
 export const validateProduct = (product: Product) => {
