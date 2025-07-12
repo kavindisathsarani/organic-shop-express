@@ -14,6 +14,9 @@ A full-stack application for managing organic product listings, orders, and cust
 
 ---
 
+## Frontend Application of Organic Shop Express
+git clone https://github.com/kavindisathsarani/React-vite-project.git
+
 #Postman collection
 - 📦 [Postman Collection](./Organic-Shop-Backend.postman_collection.json)
 
