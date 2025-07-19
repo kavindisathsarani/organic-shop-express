@@ -3,6 +3,7 @@ import productRoutes from "./routes/product.routes"
 import cors from "cors"
 import contactRoutes from "./routes/contact.routes";
 import authRoutes from "./routes/auth.routes";
+import {authenticateToken} from "./middleware/auth.middleware";
 
 // 1. Initialize the express app
 const app = express();
@@ -31,7 +32,7 @@ const corsOptions={
 
 app.use("/api/auth",authRoutes)
 
-app.use("/api/products", productRoutes)
+app.use("/api/products", authenticateToken,productRoutes)
 app.use("/api/contacts", contactRoutes)
 
 //Define a simple HTTP GET request
