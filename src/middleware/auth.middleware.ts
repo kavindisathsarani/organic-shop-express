@@ -30,5 +30,12 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
 export const authorizeRole = (...roles: string[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
         const user = (req as Request & { user?: any }).user;
+        if (!user || !roles.includes(user.role)) {
+            res.status(403).json({
+                error: 'Access denied. User does not have permission to perform this action'
+            });
+            return;
+        }
+        next(); // continue to the next middleware
     }
 }
